@@ -13,7 +13,13 @@ export default styles = StyleSheet.create({
       color: 'white',
       fontSize: 60
     },
-    customButton: {
-      width: 150
+    slide: {
+      width: 200,
+      margin: 20
+    },
+    minutes: {
+      color: 'white',
+      textAlign: 'center',
+      fontSize: 20
     }
   });
