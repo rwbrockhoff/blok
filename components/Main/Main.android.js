@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import styles from './Main.styles'
+import {connect} from 'react-redux'
 
-
-export default class Main extends React.Component {
+class Main extends React.Component {
   constructor(){
     super()
     this.state = {
@@ -27,16 +27,24 @@ export default class Main extends React.Component {
       this.startTimer()
    }
 
-  render() {
+  render(props) {
     
     return (
       <View style={styles.container}>
         <Text 
         onPress={() => this.stopTimer()}
-        style={styles.timer}>{this.state.timer}</Text>
+        style={styles.timer}>{this.props.duration}</Text>
       </View>
     );
   }
 }
+
+function mapStateToProps(state){
+  return {
+    ...this.props, ...state
+  }
+}
+
+export default connect(mapStateToProps)(Main);
 
 
