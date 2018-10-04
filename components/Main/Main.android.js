@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import styles from './Main.styles'
-import _ from 'lodash'
+
 
 export default class Main extends React.Component {
   constructor(){
@@ -11,22 +11,29 @@ export default class Main extends React.Component {
     }
   }
 
-    renderTimer(){
-      alert('yeah')
-      this.setState({
-        timer: 30 
-      })
-    
-  }
+   startTimer(){
 
-  componentDidMount(){
-    _.debounce(renderTimer, 1000)
-  }
+     setInterval(() => {
+      this.setState({timer: ++this.state.timer})
+     },1000)
+
+   }
+
+   stopTimer(){
+     alert('stop!')
+   }
+
+   componentDidMount(){
+      this.startTimer()
+   }
 
   render() {
+    
     return (
       <View style={styles.container}>
-        <Text>{this.state.timer}</Text>
+        <Text 
+        onPress={() => this.stopTimer()}
+        style={styles.timer}>{this.state.timer}</Text>
       </View>
     );
   }
