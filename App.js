@@ -1,21 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NativeRouter, Route} from 'react-router-native'
+
+import Home from './components/Home/Home.android'
 import Main from './components/Main/Main.android'
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Main/>
-      </View>
+      <NativeRouter>
+        <Route exact path="/" component={Home}/>
+      </NativeRouter>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
