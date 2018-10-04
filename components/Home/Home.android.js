@@ -9,7 +9,7 @@ export default class Home extends React.Component {
   constructor(){
     super()
     this.state = {
-      value: 15
+      value: 30
     }
   }
   render() {
@@ -19,8 +19,11 @@ export default class Home extends React.Component {
 
         <View style={styles.slide}>
         <Slider
+        value={30}
         minimumValue={15}
         maximumValue={45}
+        minimumTrackTintColor={'gray'}
+        thumbTintColor={'#841584'}
     value={this.state.value}
     onValueChange={(value) => this.setState({value: Math.round(value)})} />
       <Text style={styles.minutes}>{this.state.value} min</Text>
