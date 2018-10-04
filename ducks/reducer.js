@@ -1,5 +1,5 @@
 const initialState = {
-    duration: 1800
+    duration: 30
 }
 
 const STORE_DURATION = 'STORE_DURATION'

@@ -1,18 +1,27 @@
 import React from 'react'
 import { Text, View, Slider } from 'react-native'
-
 import RouterButton from 'react-router-native-button'
-
+import { connect } from 'react-redux'
+import {storeDuration} from '../../ducks/reducer'
 import styles from './Home.styles'
 
-export default class Home extends React.Component {
+
+class Home extends React.Component {
   constructor(){
     super()
     this.state = {
       value: 30
     }
   }
-  render() {
+
+  sliderValue(value){
+    let duration = Math.round(value)
+    if(duration%5===0){
+      this.props.storeDuration(duration)
+    }
+  }
+
+  render(props) {
     return (
       <View style={styles.container}>
         <Text style={styles.font}>blok</Text>
@@ -25,8 +34,8 @@ export default class Home extends React.Component {
         minimumTrackTintColor={'gray'}
         thumbTintColor={'#841584'}
     value={this.state.value}
-    onValueChange={(value) => this.setState({value: Math.round(value)})} />
-      <Text style={styles.minutes}>{this.state.value} min</Text>
+    onValueChange={(value) => this.sliderValue(value)} />
+      <Text style={styles.minutes}>{this.props.duration} min</Text>
       </View>
 
         <RouterButton to="/Main" title="start blok" color="#841584"/>
@@ -35,4 +44,11 @@ export default class Home extends React.Component {
   }
 }
 
+function mapStateToProps(state){
+  return {
+    ...this.props, ...state
+  }
+}
+
+export default connect(mapStateToProps, {storeDuration})(Home)
 
