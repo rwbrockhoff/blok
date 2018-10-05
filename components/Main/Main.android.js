@@ -1,16 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View, Animated, Easing } from 'react-native';
 import styles from './Main.styles'
 import {connect} from 'react-redux'
 
 class Main extends React.Component {
   constructor(props){
     super(props)
+
     this.state = {
       timer: this.props.duration * 60,
       minutes: this.props.duration,
       seconds: `00`,
-      paused: false
+      paused: false,
+      fadeValue: new Animated.Value(0)
     }
 
     //setting global timer variable so that we can use clearInterval and not be limited by scope
@@ -70,6 +72,7 @@ class Main extends React.Component {
         else {
           //false
           clearInterval(globalTimer)
+          this.animateTimer()
           return {paused: true}
 
         }
@@ -79,16 +82,31 @@ class Main extends React.Component {
 
    }
 
+   animateTimer(){
+     
+     Animated.timing(
+       this.state.fadeValue, 
+       {
+         toValue: 1,
+         duration: 10000,
+         easing: Easing.linear
+       }
+
+      ).start((() => this.animateTimer()))
+   }
+
    componentDidMount(){
       this.startTimer()
    }
 
   render(props) {
-    console.log(this.state.paused)
-    var conditionalStyle = () => {
-      return this.state.paused ?  styles.timerPaused : styles.timer
-    }
+    var pausedStyles = styles.timerPaused
+    pausedStyles.opacity = this.state.fadeValue
     
+    var conditionalStyle = () => {
+      return this.state.paused ?  pausedStyles : styles.timer
+    }
+
     return (
       <View style={styles.container}>
 
