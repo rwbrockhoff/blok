@@ -83,7 +83,7 @@ class Main extends React.Component {
    }
 
    animateTimer(){
-     console.log('made it animate')
+    
      this.state.fadeValue.setValue(0.5)
      Animated.timing(
        this.state.fadeValue, 
@@ -109,9 +109,6 @@ class Main extends React.Component {
 
       return this.state.paused ?  pausedStyle : styles.timer
     }
-
-    const amountBorderColor = this.state.isClaim ? 'green' : 'red'
-    const amountStyles = StyleSheet.flatten([styles.amountSection, {borderColor: amountBorderColor}])
 
     return (
       <View style={styles.container}>
