@@ -59,16 +59,24 @@ class Main extends React.Component {
    }
 
    stopTimer(){
-     this.setState(() => {
-       clearInterval(globalTimer)
-
-       return {
-         paused: true
-       }
-     })
-
      
-     
+      this.setState(() => {
+        if(this.state.paused){
+          //true
+          this.startTimer()
+          return {paused: false}
+        }
+
+        else {
+          //false
+          clearInterval(globalTimer)
+          return {paused: true}
+
+        }
+
+      })
+    
+
    }
 
    componentDidMount(){
@@ -76,14 +84,14 @@ class Main extends React.Component {
    }
 
   render(props) {
-
+    console.log(this.state.paused)
     var conditionalStyle = () => {
       return this.state.paused ?  styles.timerPaused : styles.timer
     }
     
     return (
       <View style={styles.container}>
-      
+
         <Text 
         onPress={() => this.stopTimer()}
         style={conditionalStyle()}
