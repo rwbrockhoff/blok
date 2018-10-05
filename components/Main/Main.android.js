@@ -17,35 +17,44 @@ class Main extends React.Component {
 
      setInterval(() => {
        
-      //30:00
-      //30:58
-      
-      if(parseInt(this.state.seconds) < 10){
-        this.setState({
-          timer: this.state.timer-1,
-          seconds: `0${this.state.timer % 60}`
-        })
-      }
+        this.setState(() => {
+          if(parseInt(this.state.seconds)===0){
+            return {
+              timer: this.state.timer -1,
+              minutes: this.state.minutes -1, 
+              seconds: 59
+            }
+          }
+          
+          if(parseInt(this.state.seconds)===59){
+            return {
+              timer: this.state.timer -1,
+              seconds: this.state.seconds -1
+            }
+          }
 
-      if(parseInt(this.state.seconds) >= 10){
-        this.setState({
-          timer: this.state.timer-1,
-          seconds: this.state.timer % 60
+          if(parseInt(this.state.seconds) > 10){
+            return {
+              timer: this.state.timer -1, 
+              seconds: this.state.seconds -1
+            }
+          }
+
+          if(parseInt(this.state.seconds) <= 10){
+            return {
+              timer: this.state.timer -1,
+              seconds: `0${this.state.seconds -1}`
+            }
+          }
         })
-      }
       
-      if(parseInt(this.state.seconds)===59){
-        this.setState({
-          minutes: this.state.minutes-1
-        })
-      }
       
      },1000)
 
    }
 
    stopTimer(){
-     alert('stop!')
+     clearInterval(startTimer)
    }
 
    componentDidMount(){
