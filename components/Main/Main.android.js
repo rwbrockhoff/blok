@@ -9,14 +9,19 @@ class Main extends React.Component {
     this.state = {
       timer: this.props.duration * 60,
       minutes: this.props.duration,
-      seconds: `00`
+      seconds: `00`,
+      paused: false
     }
+
+    //setting global timer variable so that we can use clearInterval and not be limited by scope
+    var globalTimer
   }
 
    startTimer(){
 
-     setInterval(() => {
-       
+     globalTimer = setInterval(() => {
+       //passing in a function to setState is more reliable, and by returning state we don't have to worry about this.state.seconds matching multiple conditions. Once it meets one condition, it resolves for that given second. 
+
         this.setState(() => {
           if(parseInt(this.state.seconds)===0){
             return {
@@ -54,7 +59,16 @@ class Main extends React.Component {
    }
 
    stopTimer(){
-     clearInterval(startTimer)
+     this.setState(() => {
+       clearInterval(globalTimer)
+
+       return {
+         paused: true
+       }
+     })
+
+     
+     
    }
 
    componentDidMount(){
@@ -62,12 +76,18 @@ class Main extends React.Component {
    }
 
   render(props) {
+
+    var conditionalStyle = () => {
+      return this.state.paused ?  styles.timerPaused : styles.timer
+    }
     
     return (
       <View style={styles.container}>
+      
         <Text 
         onPress={() => this.stopTimer()}
-        style={styles.timer}>{`${this.state.minutes}:${this.state.seconds}`}</Text>
+        style={conditionalStyle()}
+        >{`${this.state.minutes}:${this.state.seconds}`}</Text>
 
          <Text 
         style={styles.timer}>Timer: {this.state.timer}</Text>
