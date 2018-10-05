@@ -10,11 +10,13 @@ export default styles = StyleSheet.create({
     timer: {
       color: 'white',
       fontFamily: 'Roboto',
-      fontSize: 45
+      fontSize: 55,
+      fontWeight: '100'
     },
     timerPaused: {
       color: '#9DB4AB',
       fontFamily: 'Roboto',
-      fontSize: 45
+      fontSize: 55,
+      fontWeight: '100'
     }
   });

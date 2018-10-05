@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Animated, Easing } from 'react-native';
+import { Text, View, Animated, Easing, StyleSheet } from 'react-native';
 import styles from './Main.styles'
 import {connect} from 'react-redux'
 
@@ -12,7 +12,7 @@ class Main extends React.Component {
       minutes: this.props.duration,
       seconds: `00`,
       paused: false,
-      fadeValue: new Animated.Value(0)
+      fadeValue: new Animated.Value(0.5)
     }
 
     //setting global timer variable so that we can use clearInterval and not be limited by scope
@@ -83,16 +83,18 @@ class Main extends React.Component {
    }
 
    animateTimer(){
-     
+     console.log('made it animate')
+     this.state.fadeValue.setValue(0.5)
      Animated.timing(
        this.state.fadeValue, 
        {
          toValue: 1,
-         duration: 10000,
-         easing: Easing.linear
+        duration: 1000,
+        useNativeDriver: true
+         
        }
 
-      ).start((() => this.animateTimer()))
+      ).start()
    }
 
    componentDidMount(){
@@ -100,23 +102,25 @@ class Main extends React.Component {
    }
 
   render(props) {
-    var pausedStyles = styles.timerPaused
-    pausedStyles.opacity = this.state.fadeValue
     
     var conditionalStyle = () => {
-      return this.state.paused ?  pausedStyles : styles.timer
+      
+      var pausedStyle = StyleSheet.flatten([styles.timerPaused, {opacity: this.state.fadeValue}])
+
+      return this.state.paused ?  pausedStyle : styles.timer
     }
+
+    const amountBorderColor = this.state.isClaim ? 'green' : 'red'
+    const amountStyles = StyleSheet.flatten([styles.amountSection, {borderColor: amountBorderColor}])
 
     return (
       <View style={styles.container}>
 
-        <Text 
+        <Animated.Text 
         onPress={() => this.stopTimer()}
         style={conditionalStyle()}
-        >{`${this.state.minutes}:${this.state.seconds}`}</Text>
+        >{`${this.state.minutes}:${this.state.seconds}`}</Animated.Text>
 
-         <Text 
-        style={styles.timer}>Timer: {this.state.timer}</Text>
       </View>
     );
   }
