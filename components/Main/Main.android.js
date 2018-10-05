@@ -9,24 +9,37 @@ class Main extends React.Component {
     this.state = {
       timer: this.props.duration * 60,
       minutes: this.props.duration,
-      seconds: 0
+      seconds: `00`
     }
   }
 
    startTimer(){
 
      setInterval(() => {
-      if (this.state.seconds===0){
-        this.setState({seconds: 59})
+       
+      //30:00
+      //30:58
+      
+      if(parseInt(this.state.seconds) < 10){
+        this.setState({
+          timer: this.state.timer-1,
+          seconds: `0${this.state.timer % 60}`
+        })
       }
-      if(this.state.timer%60===0){
-        this.setState({minutes: this.state.minutes-1})
+
+      if(parseInt(this.state.seconds) >= 10){
+        this.setState({
+          timer: this.state.timer-1,
+          seconds: this.state.timer % 60
+        })
       }
       
-      this.setState({
-        timer: --this.state.timer, 
-        seconds: --this.state.seconds
-      })
+      if(parseInt(this.state.seconds)===59){
+        this.setState({
+          minutes: this.state.minutes-1
+        })
+      }
+      
      },1000)
 
    }
