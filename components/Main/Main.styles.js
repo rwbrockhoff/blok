@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native'
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
       backgroundColor: 'black',
       flex: 1,
@@ -14,9 +14,14 @@ export const styles = StyleSheet.create({
       fontWeight: '100'
     },
     timerPaused: {
-      color: '#9DB4AB',
+      color: '#ED2656',
       fontFamily: 'Roboto',
       fontSize: 55,
       fontWeight: '100'
+    },
+    image: {
+      flex: 1
     }
   });
+
+  module.exports = styles

@@ -1,7 +1,28 @@
 import React from 'react';
-import { Text, View, Animated, Easing, StyleSheet } from 'react-native';
-import styles from './Main.styles'
+import { Text, View, Animated, Easing, StyleSheet, Image } from 'react-native';
+// import { styles } from './Main.styles'
 import {connect} from 'react-redux'
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'black',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  timer: {
+    color: 'white',
+    fontFamily: 'Roboto',
+    fontSize: 55,
+    fontWeight: '100'
+  },
+  timerPaused: {
+    color: '#9DB4AB',
+    fontFamily: 'Roboto',
+    fontSize: 55,
+    fontWeight: '100'
+  }
+})
 
 class Main extends React.Component {
   constructor(props){
@@ -112,7 +133,7 @@ class Main extends React.Component {
 
     return (
       <View style={styles.container}>
-
+        <Image style={styles.image} source={require('../../assets/full.png')}/>
         <Animated.Text 
         onPress={() => this.stopTimer()}
         style={conditionalStyle()}
