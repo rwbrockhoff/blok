@@ -12,15 +12,24 @@ const styles = StyleSheet.create({
   },
   timer: {
     color: 'white',
-    fontFamily: 'Roboto',
-    fontSize: 55,
-    fontWeight: '100'
+    fontFamily: 'sans-serif-light',
+    fontSize: 50,
+    fontWeight: '100',
+    position: 'absolute',
+    zIndex: 2
   },
   timerPaused: {
-    color: '#9DB4AB',
-    fontFamily: 'Roboto',
-    fontSize: 55,
-    fontWeight: '100'
+    color: '#E2e2e2',
+    fontFamily: 'sans-serif-light',
+    fontSize: 50,
+    fontWeight: '100',
+    position: 'absolute',
+    zIndex: 2
+  },
+  loadImage: {
+    flex: 1,
+    aspectRatio: 0.3,
+    resizeMode: 'contain'
   }
 })
 
@@ -133,12 +142,13 @@ class Main extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Image style={styles.image} source={require('../../assets/full.png')}/>
+       
         <Animated.Text 
         onPress={() => this.stopTimer()}
         style={conditionalStyle()}
-        >{`${this.state.minutes}:${this.state.seconds}`}</Animated.Text>
-
+        >{`${this.state.minutes}/${this.state.seconds}`}</Animated.Text>
+        
+         <Image style={styles.loadImage}source={require('../../assets/full.png')}/>
       </View>
     );
   }

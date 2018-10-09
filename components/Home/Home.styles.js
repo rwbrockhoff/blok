@@ -12,7 +12,7 @@ export default styles = StyleSheet.create({
       justifyContent: 'center'
     },
     font: {
-      fontFamily: 'Roboto',
+      fontFamily: 'sans-serif-light',
       fontWeight: 'bold',
       color: 'black',
       fontSize: 60,
