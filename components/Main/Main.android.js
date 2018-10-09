@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Animated, Easing, StyleSheet, Image } from 'react-native';
 // import { styles } from './Main.styles'
 import {connect} from 'react-redux'
+import * as Animatable from 'react-native-animatable';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
     zIndex: 2
   },
   timerPaused: {
-    color: '#E2e2e2',
+    color: 'red',
     fontFamily: 'sans-serif-light',
     fontSize: 50,
     fontWeight: '100',
@@ -41,8 +42,7 @@ class Main extends React.Component {
       timer: this.props.duration * 60,
       minutes: this.props.duration,
       seconds: `00`,
-      paused: false,
-      fadeValue: new Animated.Value(0.5)
+      paused: false
     }
 
     //setting global timer variable so that we can use clearInterval and not be limited by scope
@@ -102,30 +102,16 @@ class Main extends React.Component {
         else {
           //false
           clearInterval(globalTimer)
-          this.animateTimer()
+      
           return {paused: true}
 
         }
 
       })
     
-
    }
 
-   animateTimer(){
-    
-     this.state.fadeValue.setValue(0.5)
-     Animated.timing(
-       this.state.fadeValue, 
-       {
-         toValue: 1,
-        duration: 1000,
-        useNativeDriver: true
-         
-       }
-
-      ).start()
-   }
+   
 
    componentDidMount(){
       this.startTimer()
@@ -133,22 +119,48 @@ class Main extends React.Component {
 
   render(props) {
     
-    var conditionalStyle = () => {
-      
-      var pausedStyle = StyleSheet.flatten([styles.timerPaused, {opacity: this.state.fadeValue}])
+    var conditionalTimerDisplay = () => {
+      if(this.state.paused){
+        return (
+          <View style={styles.container}>
 
-      return this.state.paused ?  pausedStyle : styles.timer
+        <Text
+        onPress={() => this.stopTimer()}
+        style={styles.timer}>
+        {`${this.state.minutes}:${this.state.seconds}`}
+        </Text>
+
+        <Image style={styles.loadImage}source={require('../../assets/full.png')}/>
+
+         </View>
+        )
+      }
+      else {
+        return (
+          <View style={styles.container}>
+          <Text onPress={() => this.stopTimer()}
+          style={styles.timer}>
+          {`${this.state.minutes}:${this.state.seconds}`}
+          </Text>
+
+          <Animatable.Image 
+          animation="pulse" iterationCount="infinite" 
+          style={styles.loadImage}source={require('../../assets/full.png')}/>
+          </View>
+        )
+      }
     }
 
     return (
       <View style={styles.container}>
-       
-        <Animated.Text 
-        onPress={() => this.stopTimer()}
-        style={conditionalStyle()}
-        >{`${this.state.minutes}/${this.state.seconds}`}</Animated.Text>
+      
         
-         <Image style={styles.loadImage}source={require('../../assets/full.png')}/>
+        {conditionalTimerDisplay()}
+
+         
+
+         
+    
       </View>
     );
   }
