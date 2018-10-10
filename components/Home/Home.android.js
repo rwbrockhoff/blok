@@ -1,9 +1,10 @@
 import React from 'react'
-import { Text, View, Slider, ImageBackground } from 'react-native'
-import RouterButton from 'react-router-native-button'
+import { Text, View, Slider, ImageBackground, Button } from 'react-native'
+
 import { connect } from 'react-redux'
 import {storeDuration} from '../../ducks/reducer'
 import styles from './Home.styles'
+import {Actions} from 'react-native-router-flux'
 
 
 class Home extends React.Component {
@@ -37,8 +38,10 @@ class Home extends React.Component {
     onValueChange={(value) => this.sliderValue(value)} />
       <Text style={styles.minutes}>{this.props.duration} min</Text>
       </View>
-
-        <RouterButton to="/Main" title="start blok" color="#FF2463"/>
+        <Button 
+        title="Start Blok" color="#FF2463"
+        onPress={() => Actions.main()}/>
+        
       </ImageBackground>
     );
   }

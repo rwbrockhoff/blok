@@ -1,5 +1,6 @@
 import React from 'react';
 import { NativeRouter, Route, Switch} from 'react-router-native'
+import {Router, Stack, Scene} from 'react-native-router-flux'
 
 import store from './ducks/store'
 import {Provider} from 'react-redux'
@@ -11,12 +12,12 @@ export default class App extends React.Component {
   render() {
     return (
     <Provider store={store}>
-        <NativeRouter>
-          <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route path='/Main' component={Main}/>
-          </Switch>
-        </NativeRouter>
+        <Router>
+          <Stack key="root">
+            <Scene key="home" component={Home} hideNavBar={true}/>
+            <Scene key="main" component={Main} hideNavBar={true}/>
+          </Stack>
+        </Router>
     </Provider>
     );
   }
