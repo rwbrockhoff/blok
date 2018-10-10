@@ -1,3 +1,5 @@
 node_modules/**/*
+android/app/blok-release.keystore
+android/app/build.gradle
 .expo/*
 npm-debug.*
