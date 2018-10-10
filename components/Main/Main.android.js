@@ -58,7 +58,8 @@ class Main extends React.Component {
       timer: this.props.duration * 60,
       minutes: this.props.duration,
       seconds: `00`,
-      paused: false
+      paused: false,
+      blokCount: 0
     }
 
     //setting global timer variable so that we can use clearInterval and not be limited by scope
@@ -73,6 +74,18 @@ class Main extends React.Component {
        //passing in a function to setState is more reliable, and by returning state we don't have to worry about this.state.seconds matching multiple conditions. Once it meets one condition, it resolves for that given second. 
 
         this.setState(() => {
+
+          if(this.state.timer===0){
+            clearInterval(globalTimer)
+            alert('Done!')
+            return {
+              timer: this.props.duration * 60,
+              minutes: this.props.duration,
+              paused: true,
+              blokCount: this.state.blokCount+1
+            }
+          }
+
           if(parseInt(this.state.seconds)===0){
             return {
               timer: this.state.timer -1,
@@ -101,6 +114,7 @@ class Main extends React.Component {
               seconds: `0${this.state.seconds -1}`
             }
           }
+
         })
 
       
@@ -133,12 +147,7 @@ class Main extends React.Component {
       this.startTimer()
    }
 
-   componentDidUpdate(){
-     if(this.state.timer===0){
-      clearInterval(globalTimer)
-      alert('Done!')
-     }
-   }
+   
 
    componentWillUnmount(){
      clearInterval(globalTimer)
@@ -192,7 +201,7 @@ class Main extends React.Component {
          <Icon type='ionicon' name='ios-arrow-back' 
          color='white' size={40}
          onPress={() => Actions.home()}/>
-         
+        
       </View>
       
       </View>
