@@ -1,4 +1,4 @@
-package com.empty-project-template;
+package com.blok;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "empty-project-template";
+        return "blok";
     }
 }

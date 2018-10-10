@@ -1,4 +1,4 @@
-package com.empty-project-template;
+package com.blok;
 
 import android.app.Application;
 

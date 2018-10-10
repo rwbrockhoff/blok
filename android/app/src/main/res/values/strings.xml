@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">empty-project-template</string>
+    <string name="app_name">blok</string>
     <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true">ALWAYS_SEND</string>
     <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true">ALWAYS_SEND</string>
 </resources>

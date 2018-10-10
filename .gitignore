@@ -1,4 +1,8 @@
 node_modules/**/*
+android/app/build
+android/build
+android/.gradle
+
 android/app/blok-release.keystore
 android/app/build.gradle
 .expo/*
