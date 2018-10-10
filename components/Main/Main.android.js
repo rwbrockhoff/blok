@@ -12,6 +12,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  timerContainer: {
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    position: 'absolute'
+  },
   timer: {
     color: 'white',
     fontFamily: 'sans-serif-light',
@@ -123,7 +129,7 @@ class Main extends React.Component {
     var conditionalTimerDisplay = () => {
       if(this.state.paused){
         return (
-          <View style={styles.container}>
+          <View style={styles.timerContainer}>
 
         <Text
         onPress={() => this.stopTimer()}
@@ -131,22 +137,17 @@ class Main extends React.Component {
         {`${this.state.minutes}:${this.state.seconds}`}
         </Text>
 
-        <Image style={styles.loadImage}source={require('../../assets/full.png')}/>
 
          </View>
         )
       }
       else {
         return (
-          <View style={styles.container}>
+          <View style={styles.timerContainer}>
           <Text onPress={() => this.stopTimer()}
           style={styles.timer}>
           {`${this.state.minutes}:${this.state.seconds}`}
           </Text>
-
-          <Animatable.Image 
-          animation="pulse" iterationCount="infinite" 
-          style={styles.loadImage}source={require('../../assets/full.png')}/>
           </View>
         )
       }
@@ -162,7 +163,7 @@ class Main extends React.Component {
       <Loader 
       duration={this.state.duration}
       timer={this.state.timer}
-      minutes={this.state.minutes}
+      paused={this.state.paused}
       />
          
     

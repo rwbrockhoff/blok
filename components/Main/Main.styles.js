@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
       fontWeight: '100'
     },
     loadImage: {
-      width: 50,
-      height: 50,
+      flex: 1,
+      aspectRatio: 0.3,
       resizeMode: 'contain'
     }
   });
