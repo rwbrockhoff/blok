@@ -29,5 +29,9 @@ export default styles = StyleSheet.create({
       textAlign: 'center',
       fontSize: 20,
       marginTop: 20
+    },
+    view: {
+      color: 'white',
+      fontSize: 20
     }
   });

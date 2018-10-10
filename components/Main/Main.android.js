@@ -3,6 +3,7 @@ import { Text, View, Animated, Easing, StyleSheet, Image } from 'react-native';
 // import { styles } from './Main.styles'
 import {connect} from 'react-redux'
 import * as Animatable from 'react-native-animatable';
+import Loader from '../Loader/Loader.android'
 
 const styles = StyleSheet.create({
   container: {
@@ -86,7 +87,7 @@ class Main extends React.Component {
         })
       
       
-     },1000)
+     },100)
 
    }
 
@@ -158,7 +159,11 @@ class Main extends React.Component {
         {conditionalTimerDisplay()}
 
          
-
+      <Loader 
+      duration={this.state.duration}
+      timer={this.state.timer}
+      minutes={this.state.minutes}
+      />
          
     
       </View>
