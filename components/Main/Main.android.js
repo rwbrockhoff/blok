@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Animated, Easing, StyleSheet, Image } from 'react-native';
 import {Actions} from 'react-native-router-flux'
-import {Icon} from 'react-native-elements'
+import {Icon, Badge} from 'react-native-elements'
 
 // import { styles } from './Main.styles'
 import {connect} from 'react-redux'
@@ -46,6 +46,12 @@ const styles = StyleSheet.create({
     position: 'absolute', 
     top: 50, 
     left: 30, 
+    zIndex: 2
+  },
+  countContainer: {
+    position: 'absolute', 
+    top: 60, 
+    right: 30, 
     zIndex: 2
   }
 })
@@ -202,6 +208,13 @@ class Main extends React.Component {
          color='white' size={40}
          onPress={() => Actions.home()}/>
         
+      </View>
+
+      <View style={styles.countContainer}>
+
+      <Badge value={this.state.blokCount}
+      textStyle={{ fontSize: 20 }}/>
+
       </View>
       
       </View>
