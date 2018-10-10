@@ -67,6 +67,8 @@ class Main extends React.Component {
 
    startTimer(){
 
+     this.setState({paused: false})
+
      globalTimer = setInterval(() => {
        //passing in a function to setState is more reliable, and by returning state we don't have to worry about this.state.seconds matching multiple conditions. Once it meets one condition, it resolves for that given second. 
 
@@ -100,9 +102,9 @@ class Main extends React.Component {
             }
           }
         })
+
       
-      
-     },100)
+     },10)
 
    }
 
@@ -129,6 +131,13 @@ class Main extends React.Component {
 
    componentDidMount(){
       this.startTimer()
+   }
+
+   componentDidUpdate(){
+     if(this.state.timer===0){
+      clearInterval(globalTimer)
+      alert('Done!')
+     }
    }
 
    componentWillUnmount(){
