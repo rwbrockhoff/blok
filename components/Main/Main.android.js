@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, Animated, Easing, StyleSheet, Image } from 'react-native';
+import {Icon} from 'react-native-elements'
 // import { styles } from './Main.styles'
 import {connect} from 'react-redux'
 import * as Animatable from 'react-native-animatable';
@@ -38,6 +39,12 @@ const styles = StyleSheet.create({
     flex: 1,
     aspectRatio: 0.3,
     resizeMode: 'contain'
+  },
+  iconContainer: {
+    position: 'absolute', 
+    top: 50, 
+    left: 30, 
+    zIndex: 2
   }
 })
 
@@ -156,6 +163,7 @@ class Main extends React.Component {
     return (
       <View style={styles.container}>
       
+      
         
         {conditionalTimerDisplay()}
 
@@ -165,8 +173,9 @@ class Main extends React.Component {
       timer={this.state.timer}
       paused={this.state.paused}
       />
-         
-    
+      <View style={styles.iconContainer}>
+         <Icon type='ionicon' name='ios-arrow-back' color='white' size={40}/>
+      </View>
       </View>
     );
   }

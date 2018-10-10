@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Slider, ImageBackground, Image } from 'react-native'
+import { View, Image } from 'react-native'
 import RouterButton from 'react-router-native-button'
 import { connect } from 'react-redux'
 import * as Animatable from 'react-native-animatable';
@@ -12,7 +12,7 @@ class Loader extends React.Component {
   render(props) {
     var fourth = (this.props.duration * 60)/4
     const {timer} = this.props
-
+  
     if(this.props.paused){
 
         if(timer <= fourth){
