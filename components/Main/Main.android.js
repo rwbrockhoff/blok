@@ -1,7 +1,8 @@
 import React from 'react';
+import { AppRegistry } from 'react-native'
 import { Text, View, Animated, Easing, StyleSheet, Image } from 'react-native';
 import {Actions} from 'react-native-router-flux'
-import {Icon, Badge} from 'react-native-elements'
+
 
 // import { styles } from './Main.styles'
 import {connect} from 'react-redux'
@@ -124,7 +125,7 @@ class Main extends React.Component {
         })
 
       
-     },10)
+     },1000)
 
    }
 
@@ -203,17 +204,17 @@ class Main extends React.Component {
       />
       
       <View style={styles.iconContainer}>
-      
-         <Icon type='ionicon' name='ios-arrow-back' 
-         color='white' size={40}
-         onPress={() => Actions.home()}/>
+        <Text style={styles.timer}
+        onPress={() => Actions.home()}> back </Text>
+
+
+         
         
       </View>
 
       <View style={styles.countContainer}>
 
-      <Badge value={this.state.blokCount}
-      textStyle={{ fontSize: 20 }}/>
+      
 
       </View>
       
@@ -231,3 +232,4 @@ function mapStateToProps(state){
 export default connect(mapStateToProps)(Main);
 
 
+AppRegistry.registerComponent('blok', () => Main) 

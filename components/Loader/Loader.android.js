@@ -1,6 +1,6 @@
 import React from 'react'
+import { AppRegistry } from 'react-native'
 import { View, Image } from 'react-native'
-import RouterButton from 'react-router-native-button'
 import { connect } from 'react-redux'
 import * as Animatable from 'react-native-animatable';
 
@@ -106,3 +106,4 @@ function mapStateToProps(state){
 
 export default connect(mapStateToProps)(Loader)
 
+AppRegistry.registerComponent('blok', () => Loader) 

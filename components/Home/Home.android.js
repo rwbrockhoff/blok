@@ -1,4 +1,5 @@
 import React from 'react'
+import { AppRegistry } from 'react-native'
 import { Text, View, Slider, ImageBackground, Button } from 'react-native'
 
 import { connect } from 'react-redux'
@@ -55,3 +56,4 @@ function mapStateToProps(state){
 
 export default connect(mapStateToProps, {storeDuration})(Home)
 
+AppRegistry.registerComponent('blok', () => Home) 

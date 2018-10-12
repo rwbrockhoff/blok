@@ -1,5 +1,5 @@
 import React from 'react';
-import { NativeRouter, Route, Switch} from 'react-router-native'
+import { AppRegistry } from 'react-native'
 import {Router, Stack, Scene} from 'react-native-router-flux'
 
 import store from './ducks/store'
@@ -22,5 +22,7 @@ export default class App extends React.Component {
     );
   }
 }
+
+AppRegistry.registerComponent('blok', () => App) 
 
 
