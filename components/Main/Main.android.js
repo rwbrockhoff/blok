@@ -30,6 +30,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 2
   },
+  count: {
+    color: 'white',
+    fontFamily: 'sans-serif-light',
+    fontSize: 30,
+    fontWeight: '100',
+  },
   timerPaused: {
     color: 'red',
     fontFamily: 'sans-serif-light',
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
   },
   countContainer: {
     position: 'absolute', 
-    top: 60, 
+    top: 30, 
     right: 30, 
     zIndex: 2
   }
@@ -203,19 +209,10 @@ class Main extends React.Component {
       paused={this.state.paused}
       />
       
-      <View style={styles.iconContainer}>
-        <Text style={styles.timer}
-        onPress={() => Actions.home()}> back </Text>
-
-
-         
-        
-      </View>
-
-      <View style={styles.countContainer}>
-
       
 
+      <View style={styles.countContainer}>
+          <Text style={styles.count}>{this.state.blokCount}</Text>
       </View>
       
       </View>
