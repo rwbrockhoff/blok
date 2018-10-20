@@ -8,4 +8,4 @@ React Native Animatable (Animation)
 Expo && Gradle (build)
 
 ## Progress:
-App is functional on emulator. Currently working through gradle build settings to get proper apk file. App is set up to be published in the Play Store once the apk file installs and runs correctly. Bug issue posted on Stackoverflow (October 10th, 2018). Will perservere through this bug!  
+Bug resolved! I was missing a depency that fixed my "render() is not a function" (metro-react-native-babel-preset). The app is officially available in the Google Play Store. Currently working on incorporating more settings and cleaning up the code. 
